@@ -14,5 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.index');
 });
+Route::get('/contacto', function(){
+    echo "Hola tas en contacto";
+});
+Route::get('/productos', function(){
+    $color="#f0011";
+    $usuario="Doroteo Arango";
+    $num=rand(1,50);
+    return view('front.productos')
+        ->with('colorsote', $color)
+        ->with('usuario', $usuario)
+        ->with('numero', $num);
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
